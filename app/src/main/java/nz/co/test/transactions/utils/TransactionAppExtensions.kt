@@ -26,3 +26,11 @@ fun BigDecimal.toFixedDecimal(): String {
     val decimalFormat = DecimalFormat("#.##")
     return decimalFormat.format(this)
 }
+
+infix fun BigDecimal.calGST(percent: Double): String {
+    return try {
+        (this * BigDecimal(percent)).toFixedDecimal()
+    } catch (e: Exception) {
+        "N/A"
+    }
+}
