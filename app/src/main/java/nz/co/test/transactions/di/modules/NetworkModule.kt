@@ -1,8 +1,8 @@
-package nz.co.test.transactions.di.network
+package nz.co.test.transactions.di.modules
 
 import dagger.Module
 import dagger.Provides
-import nz.co.test.transactions.services.TransactionsService
+import nz.co.test.transactions.data.remote.TransactionsService
 import retrofit2.Retrofit
 
 @Module
