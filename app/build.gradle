@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -30,6 +31,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    kapt {
+        generateStubs = true
+    }
 }
 
 dependencies {
@@ -56,9 +60,23 @@ dependencies {
 
     def retrofit_version = '2.9.0'
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // okhttp for logs
+    def okhttp_version = '4.10.0'
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.0-alpha01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.0-alpha01'
+
+    def mockito_version = '3.4.6'
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation 'org.mockito:mockito-inline:2.13.0'
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3"
+    testImplementation 'app.cash.turbine:turbine:1.0.0'
+    testImplementation "com.google.truth:truth:1.1.4"
 }

@@ -1,4 +1,4 @@
-package nz.co.test.transactions.di.activities
+package nz.co.test.transactions.di
 
 import android.app.Activity
 import dagger.MapKey
