@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.TextView
 import nz.co.test.transactions.R
 import nz.co.test.transactions.domain.model.Transaction
+import nz.co.test.transactions.utils.calGST
 import nz.co.test.transactions.utils.convertToFormattedDateTime
 import nz.co.test.transactions.utils.toFixedDecimal
 import java.math.BigDecimal
@@ -44,7 +45,7 @@ class TransactionDetailsActivity : AppCompatActivity() {
             txtAmount.setTextColor(getColor(R.color.codeRed))
             txtCreditDebit.text = "Debit"
 
-            txtGstAmount.text = (transaction.debit* BigDecimal(.15)).toFixedDecimal()
+            txtGstAmount.text = transaction.debit calGST .15
         }
     }
 }
