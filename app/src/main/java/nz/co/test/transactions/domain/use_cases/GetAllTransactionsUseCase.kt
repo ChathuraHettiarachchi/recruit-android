@@ -16,11 +16,11 @@ import javax.inject.Inject
  * GetAllTransactions is used to get all transaction list
  * Have used kotlin flow and will emit results from time to time
  */
-class GetAllTransactionsUseCase @Inject constructor(private val repository: TransactionRepository) {
+open class GetAllTransactionsUseCase @Inject constructor(private val repository: TransactionRepository) {
     /**
      * Used kotlin operator function, so it's corresponding member function is called automatically
      */
-    operator fun invoke(): Flow<Resource<List<Transaction>>> = flow {
+    open operator fun invoke(): Flow<Resource<List<Transaction>>> = flow {
         try {
             emit(Resource.Loading<List<Transaction>>())
             val page = repository.retrieveTransactions()

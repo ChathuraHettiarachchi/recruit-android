@@ -14,13 +14,14 @@ import javax.inject.Inject
 
 class TransactionListViewModel @Inject constructor(
     private val getAllTransactions: GetAllTransactionsUseCase,
+    private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
     var transactionsState = MutableStateFlow<TransactionListState>(TransactionListState())
         private set
 
     fun populateAllTransactions() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             getAllTransactions().collectLatest {
                 when (it) {
                     is Resource.Error -> transactionsState.value = TransactionListState(
